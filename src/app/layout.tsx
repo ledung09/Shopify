@@ -1,8 +1,14 @@
 import './globals.css'
+import styles from './page.module.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Header from './components/Header/Header'
+import CartContextProvider from './Context/CartContext'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  display: 'swap',
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +22,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <CartContextProvider>
+          {children}
+        </CartContextProvider>
+      </body>
     </html>
   )
 }

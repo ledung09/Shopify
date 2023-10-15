@@ -1,0 +1,14 @@
+.imgcontainer {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.imgtxt {
+  position: absolute;
+  font-style: italic;
+  font-size: 30px;
+  font-weight: 700;
+  bottom: 40px;
+  width: fit-content;
+  padding: 4px 16px;
+}

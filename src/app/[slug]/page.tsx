@@ -1,0 +1,67 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import styles from "./page.module.css";
+import Error from "next/error";
+import Item from "../components/Item/Item";
+import ItemDisplay from "../components/ItemDisplay/ItemDisplay";
+
+interface item {
+  id: number;
+  title: string;
+  price: number;
+  des: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  image: string;
+  category?: string;
+  description: string;
+}
+
+export default function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const [itemList, setItemList] = useState<item[]>([]);
+  // if (!(direct in ["electronics", "jewelry", ""])) {
+  //   console.log(direct)
+  //   console.log(slug)
+  //   return (
+  //     <Error statusCode={404} title="page Not Found" />
+  //   )
+  // }
+
+  useEffect(() => {
+    const apiCall = async () => {
+      const res = await axios.get(
+        `https://fakestoreapi.com/products/category/${slug}`
+      );
+      setItemList(res.data);
+      // console.log(res.data)
+    };
+    apiCall();
+  }, []);
+
+  return (
+    <div className={styles.item_list}>
+      {itemList.map((item) => {
+        return (
+          <Item
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            price={item.price}
+            rating={item.rating}
+            img_src={item.image}
+            // onClick={() => {
+            //   setShowDetail(true);
+            //   setDetailInfo(item)
+            //   console.log("test");
+            // }}
+          />
+        );
+      })}
+    </div>
+  );
+}

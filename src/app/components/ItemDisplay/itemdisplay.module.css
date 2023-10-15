@@ -1,0 +1,51 @@
+.display_container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.display_image {
+  flex: 1.5;
+  /* border: 1px solid #ccc; */
+}
+
+.display_info {
+  flex: 2
+}
+
+.display_title {
+  font-size: 30px;
+  text-align: justify;
+}
+
+.display_rating_stat {
+  font-size: 17px;
+  margin-top: 25px;
+}
+
+.display_price {
+  font-size: 50px;
+  margin-top: 25px;
+}
+
+.display_des {
+  font-size: 15.5px;
+  margin-top: 20px;
+  text-align: justify;
+} 
+
+.display_info button {
+  margin-top: 25px;
+  border: none;
+  border-radius: 8px;
+  background-color: #EE4D2D;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.display_info .active_btn:active {
+  transform: translateY(4px);
+}

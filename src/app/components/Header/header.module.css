@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 40px 0px 70px;
+}
+
+.header .logo {
+  margin-right: auto;
+  font-size: 40px;
+  font-weight: 700;
+  color: #ee4d2d;
+}
+
+.header .navitem {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0px 20px;
+}
