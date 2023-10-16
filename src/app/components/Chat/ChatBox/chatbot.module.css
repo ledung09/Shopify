@@ -1,0 +1,111 @@
+.chatbox_container {
+  width: 375px;
+  height: 55vh;
+  position: fixed;
+  z-index: 1000;
+  bottom: 110px;
+  right: 25px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox_header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 55px;
+  background: #ee4d2d;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 0px 16px;
+  margin-bottom: 0.1px;
+  border-bottom: 0.1px solid white;
+}
+
+.chatbox_header .avatar {
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbox_header .botname {
+  font-size: 19px;
+  font-weight: 7 00;
+  color: white;
+  margin-left: 10px;
+}
+
+.chatbox_header button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+
+.chatbox_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 0px 16px;
+  gap: 20px
+}
+
+.chatbox_footer input {
+  flex: 1;
+  padding: 8px 16px 7px;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 13.5px;
+}
+
+.chatbox_footer .send_btn {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.chatbox_chatsection {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0px 16px;
+}
+
+.chatbox_chatsection .chat_container {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  gap: 6px;
+}
+
+.chatbox_chatsection .chat_avatar {
+  border-radius: 50%;
+  border: 1px solid #ee4d2d;
+  width: 25px !important;
+  height: 25px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 2px;
+}
+
+.chatbox_chatsection .chat_bubble {
+  border-radius: 20px;
+  padding: 6px 12px;
+  word-wrap: break-word;
+  line-height: 22px;
+  margin-bottom: 3px;
+}

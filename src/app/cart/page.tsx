@@ -1,7 +1,7 @@
 "use client"
 
 import { useCartContext } from "../Context/CartContext";
-import CartItem from "../components/CartItem/CartItem";
+import CartItem from "../components/Cart/CartItem/CartItem";
 import styles from "./page.module.css"
 
 export default function Page() {

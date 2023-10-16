@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./page.module.css";
 import Error from "next/error";
-import Item from "../components/Item/Item";
-import ItemDisplay from "../components/ItemDisplay/ItemDisplay";
+import Item from "../components/Items/Item/Item";
+import ItemDisplay from "../components/Items/ItemDisplay/ItemDisplay";
 
 interface item {
   id: number;

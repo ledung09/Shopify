@@ -1,0 +1,14 @@
+.chat_icon {
+  position: fixed;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  bottom: 25px;
+  right: 25px;
+  background-color: #EE4D2D;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

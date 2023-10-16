@@ -2,7 +2,7 @@ import './globals.css'
 import styles from './page.module.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Header from './components/Header/Header'
+import Header from './components/Homepage/Header/Header'
 import CartContextProvider from './Context/CartContext'
 
 const inter = Inter({
