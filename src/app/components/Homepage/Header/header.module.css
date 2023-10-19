@@ -6,7 +6,7 @@
 
 .header .logo {
   margin-right: auto;
-  font-size: 40px;
+  font-size: 43px;
   font-weight: 700;
   color: #ee4d2d;
 }
@@ -15,4 +15,12 @@
   font-size: 16px;
   font-weight: 500;
   margin: 0px 20px;
+  text-align: center;
+  width: fit-content;
+  margin-top: 15px;
+  padding-bottom: 5px;
+}
+
+.header .navitem:hover {
+  border-bottom: 2px solid black;
 }

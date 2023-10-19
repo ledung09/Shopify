@@ -12,26 +12,32 @@ interface Props {
     count: number;
   }
   img_src: string;
+  slug: string;
 }
 
 export default function Item(props: Props) {
-  const { id, title, price, rating, img_src } = props;
+  const { id, title, price, rating, img_src, slug } = props;
   return (
-    <Link href={`/electronic/${id}`} className={styles.item_container_outer}> 
+    <Link href={`/${slug}/${id}`} className={styles.item_container_outer}> 
       <div className={styles.item_container}>
         <div className={styles.item_img}>
-          <Image
-            src={img_src}
-            width={0}
-            height={0}
-            style={{ 
-              width: "100%", 
-              height: "200px", 
-              objectFit: "contain" 
-            }}
-            priority={true} 
-            alt={"title"}
-          />
+          {
+            img_src ? 
+            <Image
+              src={img_src}
+              width={0}
+              height={0}
+              style={{ 
+                width: "100%", 
+                height: "200px", 
+                objectFit: "contain" 
+              }}
+              priority={true} 
+              alt={"title"}
+            />
+              : 
+            <></>
+          }
         </div>
         <div className={styles.item_info}>
           <p className={styles.item_title}>{title}</p>

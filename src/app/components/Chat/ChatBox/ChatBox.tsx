@@ -1,66 +1,83 @@
+"use client"
+
 import { useEffect, useState, useRef } from "react";
 import styles from "./chatbot.module.css";
 import Image from "next/image";
 import ScrollableFeed from "react-scrollable-feed";
-
+import axios from 'axios';
+import ReactLoading from 'react-loading';
 
 interface ChatMessage {
   type: string;
   message: string;
 }
 
+interface Props {
+  show: boolean;
+  setShow: any;
+}
 
-export default function ChatBox() {
+export default function ChatBox(props: Props) {
   const [form, setForm] = useState<string>("");
+  const [isloading, setIsLoading] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       type: "chatbot",
-      message: "Hello",
-    },
-    {
-      type: "chatbot",
-      message:
-        "Hi there! I'm your friendly chatbot. How can I assist you today?",
-    },
-    {
-      type: "human",
-      message: "What services do you offer?",
-    },
-    {
-      type: "chatbot",
-      message:
-        "We offer a wide range of services including web development, mobile app development, and AI solutions.",
-    },
-    {
-      type: "human",
-      message: "What services do you offer?",
-    },
-    {
-      type: "chatbot",
-      message:
-        "We offer a wide range of services including web development, mobile app development, and AI solutions.",
-    },
+      message: "Type something... 👋",
+    }
   ]);
 
   const updateMessage = () => {
-    if (form != "") {
-      var updatedMessages: ChatMessage[] = [
-        ...messages,
-        {
-          type: "human",
-          message: `${form}`,
-        },
-      ];
-      setMessages(updatedMessages);
-      setForm("");
+    if (form !== "") {
+  
+      const newMessage = {
+        type: "human",
+        message: form,
+      };
+  
+      const updatedMessages: ChatMessage[] = [...messages, newMessage];
+  
+      setMessages(updatedMessages); // Set old chat messages first
+      setForm("")
+      setIsLoading(true);
+
+
+      axios.post('http://localhost:5000/user_input', {
+        message: form
+      })
+      .then(function (response) {
+  
+        const botMessage = {
+          type: "chatbot",
+          message: response.data.response,
+        };
+  
+        const updatedMessagesWithBotResponse: ChatMessage[] = [...updatedMessages, botMessage];
+        setIsLoading(false);
+        setMessages(updatedMessagesWithBotResponse);
+        
+      })
+      .catch(function (error) {
+        const botMessage = {
+          type: "chatbot",
+          message: "Connection error 🛜, please try again! ",
+        };
+  
+        const updatedMessagesWithBotResponse: ChatMessage[] = [...updatedMessages, botMessage];
+        setIsLoading(false);
+        setMessages(updatedMessagesWithBotResponse);
+      });
     }
   };
-
-
   
  
   return (
-    <div className={styles.chatbox_container}>
+    <div 
+      className={styles.chatbox_container}
+      style={{
+        display: props.show ? "flex" : "none"
+      }}
+    >
       <div className={styles.chatbox_header}>
         <div className={styles.avatar}>
           <Image
@@ -76,7 +93,10 @@ export default function ChatBox() {
           />
         </div>
         <p className={styles.botname}>BotShopify</p>
-        <button onClick={() => {}}>✖</button>
+        <button onClick={() => {
+          props.setShow(false)
+
+        }}>✖</button>
       </div>
       <ScrollableFeed>
         <div className={styles.chatbox_chatsection}>
@@ -91,7 +111,7 @@ export default function ChatBox() {
                 className={styles.chat_container}
                 style={{
                   justifyContent:
-                    message_obj.type === "chatbot" ? "start" : "end",
+                    message_obj.type === "chatbot" ? "flex-start" : "flex-end",
                   marginTop: yMargin,
                 }}
               >
@@ -110,27 +130,79 @@ export default function ChatBox() {
                     />
                   </div>
                 ) : (
-                  <></>
+                  <div></div>
                 )}
-                <div
-                  key={idx}
-                  className={styles.chat_bubble}
-                  style={{
-                    display: "block",
-                    width: "fit-content",
-                    float: message_obj.type === "human" ? "right" : "left",
-                    backgroundColor:
-                      message_obj.type === "human" ? "#EE4D2D" : "#E4E6EB",
-                    color: message_obj.type === "human" ? "white" : "black",
-                  }}
-                >
-                  {message_obj.message}
-                </div>
+                {
+                  message_obj.type === "human" ? 
+                  <div
+                    key={idx}
+                    className={styles.chat_bubble}
+                    style={{
+                      display: "block",
+                      width: "fit-content",
+                      float: "right",
+                      backgroundColor: "#EE4D2D",
+                      color: "white",
+                    }}
+                  >
+                    {message_obj.message}
+                  </div>
+                    :
+                  <div
+                    key={idx}
+                    className={styles.chat_bubble}
+                    style={{
+                      display: "block",
+                      width: "fit-content",
+                      float: "left",
+                      backgroundColor: "#E4E6EB",
+                      color: "black",
+                    }}
+                    dangerouslySetInnerHTML={{ __html: message_obj.message }} 
+                  >
+                  </div>
+
+                }                
               </div>
             );
           })}
+
+        
         </div>
+        {
+        isloading ? 
+        <div className={styles.chat_loading}>
+          <div className={styles.chat_avatar}>
+            <Image
+              src="botavatar.png"
+              width={0}
+              height={0}
+              style={{
+                width: "25px",
+                height: "25px",
+                objectFit: "contain",
+              }}
+              alt="chatbot"
+            />
+          </div>
+          <div 
+            className={styles.chat_bubble_loading }
+            style={{
+              display: "block",
+              width: "fit-content",
+              backgroundColor: "#E4E6EB",
+              color: "black"
+            }}
+          >
+            <ReactLoading type="bubbles" color="#A1A7B0" height={30} width={30}/>
+          </div>
+        </div>
+          :
+        <div></div>
+      }
       </ScrollableFeed>
+      
+          
       <div className={styles.chatbox_footer}>
         <input
           type="text"
@@ -140,10 +212,15 @@ export default function ChatBox() {
             setForm(e.target.value);
           }}
           onKeyUp={(e) => {
-            if (e.key === "Enter") updateMessage();
+            if (e.key === "Enter") {
+              updateMessage();
+            }
           }}
         />
-        <div className={styles.send_btn} onClick={() => updateMessage()}>
+        <div className={styles.send_btn} onClick={() => {
+            updateMessage();
+          }}
+        >
           <Image
             src="sendbtn.png"
             width={0}

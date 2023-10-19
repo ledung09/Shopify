@@ -1,9 +1,18 @@
+"use client"
+
 import Image from "next/image"
 import styles from "./chaticon.module.css"
 
-export default function ChatIcon() {
+interface Props {
+  onClick: any;
+}
+
+export default function ChatIcon(props: Props) {
   return (
-    <div className={styles.chat_icon}>
+    <div 
+      className={styles.chat_icon}
+      onClick={props.onClick}
+    >
       <Image
         src="chatbot.png"
         width={0}

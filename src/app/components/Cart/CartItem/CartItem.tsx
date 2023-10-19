@@ -41,18 +41,23 @@ export default function CartItem(props: Props) {
 
   return (
     <div className={styles.cart_item}>
-      <Image
-        src={item.image}
-        width={0}
-        height={0}
-        style={{
-          width: "100px",
-          height: "85%",
-          objectFit: "contain",
-        }}
-        priority={true}
-        alt={item.title}
-      />
+      {
+        item.image ? 
+        <Image
+          src={item.image}
+          width={0}
+          height={0}
+          style={{
+            width: "100px",
+            height: "85%",
+            objectFit: "contain",
+          }}
+          priority={true}
+          alt={item.title}
+        />
+          : 
+        <></>
+      }
       <div className={styles.item_info}>
         <p className={styles.item_title}>
           {item.title.split(" ").slice(0, 8).join(" ")}...

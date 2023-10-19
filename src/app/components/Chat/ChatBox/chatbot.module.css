@@ -1,6 +1,6 @@
 .chatbox_container {
-  width: 375px;
-  height: 55vh;
+  width: 350px;
+  height: 60vh;
   position: fixed;
   z-index: 1000;
   bottom: 110px;
@@ -10,12 +10,13 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
+  transition: all 0.5s;
 }
 
 .chatbox_header {
   box-sizing: border-box;
   width: 100%;
-  height: 55px;
+  height: 58px;
   background: #ee4d2d;
   display: flex;
   align-items: center;
@@ -27,8 +28,8 @@
 }
 
 .chatbox_header .avatar {
-  width: 29px;
-  height: 29px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background-color: white;
   display: flex;
@@ -37,8 +38,8 @@
 }
 
 .chatbox_header .botname {
-  font-size: 19px;
-  font-weight: 7 00;
+  font-size: 20px;
+  font-weight: 500;
   color: white;
   margin-left: 10px;
 }
@@ -57,7 +58,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: 58px;
   box-sizing: border-box;
   padding: 0px 16px;
   gap: 20px
@@ -82,16 +83,20 @@
   flex: 1;
   box-sizing: border-box;
   padding: 0px 16px;
+  /* height: 100%; */
+  /* height: 100px; */
+  display: flex;
+  flex-direction: column;
 }
 
 .chatbox_chatsection .chat_container {
   width: 100%;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 6px;
 }
 
-.chatbox_chatsection .chat_avatar {
+.chat_avatar {
   border-radius: 50%;
   border: 1px solid #ee4d2d;
   width: 25px !important;
@@ -109,3 +114,36 @@
   line-height: 22px;
   margin-bottom: 3px;
 }
+
+.chat_loading {
+  box-sizing: border-box;
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0px 16px;
+  margin-bottom: 0px;
+  /* position: absolute;
+  bottom: 0px; */
+}
+
+.chat_loading .chat_avatar_loading {
+  border-radius: 50%;
+  border: 1px solid #ee4d2d;
+  width: 25px !important;
+  height: 25px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 2px;
+}
+
+.chat_loading .chat_bubble_loading {
+  border-radius: 20px;
+  padding: 0px 10px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+

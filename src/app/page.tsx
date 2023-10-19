@@ -2,16 +2,13 @@
 
 import styles from "./page.module.css";
 import { HeaderImg } from "./components/Homepage/HomeImg/HomeImg";
-import ChatIcon from "./components/Chat/ChatIcon/ChatIcon";
-import ChatBox from "./components/Chat/ChatBox/ChatBox";
+
 
 export default function Home() {
   
   
   return (
     <>
-      <ChatIcon />
-      <ChatBox />
       <section className={styles.main}>
         <HeaderImg 
           src="electronics"

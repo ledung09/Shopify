@@ -24,13 +24,6 @@ interface item {
 export default function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const [itemList, setItemList] = useState<item[]>([]);
-  // if (!(direct in ["electronics", "jewelry", ""])) {
-  //   console.log(direct)
-  //   console.log(slug)
-  //   return (
-  //     <Error statusCode={404} title="page Not Found" />
-  //   )
-  // }
 
   useEffect(() => {
     const apiCall = async () => {
@@ -54,11 +47,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             price={item.price}
             rating={item.rating}
             img_src={item.image}
-            // onClick={() => {
-            //   setShowDetail(true);
-            //   setDetailInfo(item)
-            //   console.log("test");
-            // }}
+            slug={slug}
           />
         );
       })}
